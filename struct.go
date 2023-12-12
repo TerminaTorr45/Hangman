@@ -1,4 +1,4 @@
-package hangman
+package hangmanpackage
 
 type Hangman struct {
 	Words    []string

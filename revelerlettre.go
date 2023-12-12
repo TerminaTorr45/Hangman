@@ -1,4 +1,4 @@
-package hangman
+package hangmanpackage
 
 func RevelerLettres(mot, motCache, lettre string) string {
 	revele := []byte(motCache)
