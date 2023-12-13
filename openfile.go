@@ -2,11 +2,13 @@ package hangmanpackage
 
 import (
 	"bufio"
+	"fmt"
 	"log"
+	"math/rand"
 	"os"
 )
 
-func Openfile() (mots []string) {
+func Openfile() (mot string) {
 
 	f, err := os.Open("words.txt")
 
@@ -17,14 +19,20 @@ func Openfile() (mots []string) {
 
 	scanner := bufio.NewScanner(f)
 
+	var tabmots []string
+
 	for scanner.Scan() {
-		mots = append(mots, scanner.Text())
+		tabmots = append(tabmots, scanner.Text())
 	}
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 
-	return mots
+	index := rand.Intn(len(tabmots))
+	mot = tabmots[index]
+
+	fmt.Println(mot)
+	return mot
 
 }
