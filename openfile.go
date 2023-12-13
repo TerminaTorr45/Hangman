@@ -7,7 +7,9 @@ import (
 )
 
 func Openfile(filename string) {
+
 	var mots Hangman
+
 	f, err := os.Open(filename)
 
 	if err != nil {
