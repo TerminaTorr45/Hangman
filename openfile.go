@@ -6,11 +6,9 @@ import (
 	"os"
 )
 
-func Openfile(filename string) {
+func Openfile() (mots []string) {
 
-	var mots Hangman
-
-	f, err := os.Open(filename)
+	f, err := os.Open("words.txt")
 
 	if err != nil {
 		log.Fatal(err)
@@ -20,12 +18,13 @@ func Openfile(filename string) {
 	scanner := bufio.NewScanner(f)
 
 	for scanner.Scan() {
-		mots.Words = append(mots.Words, scanner.Text())
+		mots = append(mots, scanner.Text())
 	}
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 
-	Userenter(&mots, false, "", "", Hangman{})
+	return mots
+
 }

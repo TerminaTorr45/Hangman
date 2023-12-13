@@ -2,28 +2,9 @@ package hangmanpackage
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"os"
 )
-
-func Start() {
-
-	var fileName string
-
-	if len(os.Args) < 2 {
-		fmt.Println("Select a words file")
-		os.Exit(1)
-	}
-
-	if len(os.Args) == 3 && os.Args[1] == "--startWith" {
-		fileName = os.Args[2]
-	} else {
-		Openfile(os.Args[1])
-		return
-	}
-	ResumeGame(fileName)
-}
 
 func SaveGame(word, hiddenWord string, hang Hangman) {
 	saveData := struct {
