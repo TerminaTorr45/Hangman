@@ -2,7 +2,6 @@ package hangmanpackage
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"math/rand"
 	"os"
@@ -10,7 +9,7 @@ import (
 
 func Openfile() (mot string) {
 
-	f, err := os.Open("words.txt")
+	f, err := os.Open(os.Args[1])
 
 	if err != nil {
 		log.Fatal(err)
@@ -31,8 +30,6 @@ func Openfile() (mot string) {
 
 	index := rand.Intn(len(tabmots))
 	mot = tabmots[index]
-
-	fmt.Println(mot)
 	return mot
 
 }
