@@ -2,28 +2,18 @@ package hangmanpackage
 
 import (
 	"bufio"
-	"fmt"
-	"log"
 	"math/rand"
 	"os"
 )
 
-func Openfile() (mot string) {
-
-	if len(os.Args) < 2 {
-		fmt.Println("Select a words file")
-		os.Exit(1)
-	}
-
-	f, err := os.Open(os.Args[1])
-
+func Openfile(filePath string) (mot string, err error) {
+	f, err := os.Open(filePath)
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 	defer f.Close()
 
 	scanner := bufio.NewScanner(f)
-
 	var tabmots []string
 
 	for scanner.Scan() {
@@ -31,11 +21,10 @@ func Openfile() (mot string) {
 	}
 
 	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 
 	index := rand.Intn(len(tabmots))
 	mot = tabmots[index]
-	return mot
-
+	return mot, nil
 }
